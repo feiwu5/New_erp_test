@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ERP鹹酥雞測驗所</title> 
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body class="index">
+    <div class="container index"> 
+        <input type="text" id="username" placeholder="請輸入你的名字+生日月日">
+        <br>
+        <button id="startBtn">開始遊戲</button>
+    </div>
+
+    <script>
+    // 獲取 Flask 生成的 URL，並儲存在全域變數中
+    const GAME_URL = "{{ url_for('game') }}";
+    </script>
+
+    <script type="module" src="{{ url_for('static', filename='js/script.js') }}"></script> 
+</body>
+</html>
+
+
+

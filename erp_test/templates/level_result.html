@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>闖關結果判定</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}"> 
+</head>
+<body class="result-page"> 
+
+    <div class="full-test-container">
+        <h1 id="result-title">結果判定中...</h1>
+        
+        <div id="reward-animation" style="text-align: center; margin: 20px 0;">
+        </div>
+
+        <p id="result-message">正在檢查您的作答結果...</p>
+        
+        <button id="restart-btn">返回選單</button>
+    </div>
+    
+    <section class="details-section" style="max-width: 600px; width: 90%; margin: 30px auto;">
+        <h2>答題詳情</h2>
+        <div id="results-detail-list" class="r-results-detail-list">
+            </div>
+    </section>
+
+    <script type="module" src="{{ url_for('static', filename='js/level_result.js') }}"></script>
+</body>
+</html>

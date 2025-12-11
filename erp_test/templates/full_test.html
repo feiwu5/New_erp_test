@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ERP鹹酥雞測驗所-正式測驗選擇題庫</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body class="full-test">
+    
+    <a href="{{ url_for('game') }}" class="back-link">← 返回主選單</a>
+    
+    <div class="quiz-controls"> 
+        
+        <h1>選擇題庫</h1>
+    
+        <div class="category-container">
+            <button id="hr-btn">人力資源管理</button>
+            <button id="finance-btn">財務管理</button>
+            <button id="logistics-btn">運籌管理</button>
+        </div>
+    
+        <button id="start-test">開始測驗（70題）</button>
+        
+    </div>
+
+    <script type="module" src="{{ url_for('static', filename='js/full_test.js') }}"></script>
+</body>
+</html>

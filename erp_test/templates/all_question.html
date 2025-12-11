@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+    <meta charset="UTF-8">
+    <title>ERP鹹酥雞測驗所-完整題庫</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+
+<body class="allq-body">
+
+    <a href="{{ url_for('game') }}" class="back-link">← 返回主選單</a>
+
+    <div class="allq-container">
+
+        <h1 class="allq-title">完整題庫</h1>
+        <h2 class="allq-subtitle">請選擇類別</h2>
+
+        <div class="category-list">
+            <button class="category-btn" data-category="人力資源規劃">人力資源規劃</button>
+            <button class="category-btn" data-category="運籌管理">運籌管理</button>
+            <button class="category-btn" data-category="財務管理">財務管理</button>
+        </div>
+
+        <div id="question-list" class="question-list"></div>
+
+    </div>
+
+    <script type="module" src="{{ url_for('static', filename='js/all_question.js') }}"></script>
+</body>
+
+</html>

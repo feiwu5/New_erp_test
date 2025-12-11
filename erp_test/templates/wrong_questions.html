@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ERP鹹酥雞測驗所-我的錯題集</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}"> 
+</head>
+<body class="wrong-q-page">
+
+    <a href="{{ url_for('game') }}" class="back-link">← 返回主選單</a>
+
+    <div class="wq-container">
+        <h1 class="wq-title">錯題集整理</h1>
+        <p class="wq-subtitle" id="player-info">玩家：載入中...</p>
+        
+        <div id="wrong-q-list" class="wrong-q-list">
+            <p id="loading-msg">正在載入錯題...</p>
+        </div>
+        
+        <div id="empty-msg" style="display:none;">
+             <p>恭喜！您的錯題集目前是空的！</p>
+        </div>
+    </div>
+    
+    <script type="module" src="{{ url_for('static', filename='js/wrong_questions.js') }}"></script>
+</body>
+</html>

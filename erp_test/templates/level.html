@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ERP鹹酥雞測驗所-選擇題庫</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body class="level">
+
+    <a href="{{ url_for('quiz') }}" id="back-to-quiz" class="back-link">← 返回</a>
+
+    <div class="level-container">
+        <div class="header-wrapper">
+            <h1 class="level-title">第 X 關</h1>
+            <h2 class="level-subtitle">請選擇題庫</h2>
+        </div>
+
+        <div class="category-list">
+            <button class="category-item" data-cat="人力資源規劃">人力資源規劃</button>
+            <button class="category-item" data-cat="財務管理">財務管理</button>
+            <button class="category-item" data-cat="運籌管理">運籌管理</button>
+        </div>
+
+        <button id="start-btn" class="start-btn">開始闖關</button>
+    </div>
+
+    <script>
+        // 將 level_play 路由的 URL 儲存在全域變數中
+        const LEVEL_PLAY_URL = "{{ url_for('level_play') }}";
+    </script>
+    
+    <script type="module" src="{{ url_for('static', filename='js/level.js') }}"></script>
+</body>
+</html>

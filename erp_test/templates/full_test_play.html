@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ERP鹹酥雞測驗所-正式測驗</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body class="quiz-play">
+    
+    <a href="{{ url_for('full_test') }}" class="back-link">← 返回主選單</a>
+
+    <div class="full-test-container">
+        <h1 id="full-test-title">正式測驗</h1>
+        <div id="question-container">
+            <p id="question-text">題目會顯示在這裡</p>
+            <ul id="options-list"></ul>
+        </div>
+        <div id="button-group"> 
+                <button id="prev-btn">上一題</button> 
+            <button id="next-btn">下一題 </button> 
+        </div>
+    </div>
+
+    <script type="module" src="{{ url_for('static', filename='js/full_test_play.js') }}"></script>
+</body>
+</html>

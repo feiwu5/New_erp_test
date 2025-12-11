@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ERP鹹酥雞測驗所-測驗結果</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}"> 
+</head>
+<body class="result-page"> 
+    <div class="r-container">
+        <header>
+            <h1 id="result-title">正式測驗結果</h1>
+            <p id="category-info" class="r-category-info"></p>
+        </header>
+
+        <section class="r-summary-card">
+            <h2>成績總結</h2>
+            <div class="r-score-display">
+                <span id="score-text">得分(滿分70):</span>
+                <span id="final-score" class="r-score-value">0</span>
+            </div>
+            <div class="r-details-stats">
+                <p>總題數: <span id="total-questions">0</span></p>
+                <p>正確題數: <span id="correct-count">0</span></p>
+                <p>錯誤題數: <span id="incorrect-count">0</span></p>
+            </div>
+            <button id="restart-btn" onclick="window.location.href='full_test.html'">返回主選單</button>
+        </section>
+        
+        <section class="r-details-section">
+            <h2>答題詳情</h2>
+            <div id="results-detail-list" class="r-results-detail-list">
+                </div>
+        </section>
+    </div>
+    
+    <script type="module" src="{{ url_for('static', filename='js/full_test_result.js') }}"></script>
+</body>
+</html>
