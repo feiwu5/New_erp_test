@@ -17,9 +17,12 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
 
-// ⚡ 下面放你的按鈕監聽與 loadQuestions 函式
+// ⚡ 按鈕監聽
 const buttons = document.querySelectorAll(".category-btn");
 const questionList = document.getElementById("question-list");
+
+// A B C D 對照表
+const optionLabels = ["A", "B", "C", "D"];
 
 buttons.forEach(btn => {
     btn.addEventListener("click", () => {
@@ -45,6 +48,7 @@ async function loadQuestions(categoryName) {
 
         snapshot.forEach(doc => {
             const data = doc.data();
+
             html += `
                 <div class="question-item">
                     <div class="question-number">第 ${num} 題</div>
@@ -52,12 +56,12 @@ async function loadQuestions(categoryName) {
 
                     <ul style="margin-top:10px;">
                         ${data.options.map((opt, i) => `
-                            <li>${i + 1}. ${opt}</li>
+                            <li>${optionLabels[i]}. ${opt}</li>
                         `).join("")}
                     </ul>
 
                     <div style="margin-top:8px; color:#2c3e50;">
-                        <strong>正確答案：</strong> ${data.answer + 1}
+                        <strong>正確答案：</strong> ${optionLabels[data.answer]}
                     </div>
                 </div>
             `;
@@ -71,5 +75,3 @@ async function loadQuestions(categoryName) {
         questionList.innerHTML = `<p style="color:red;">讀取失敗，請稍後再試。</p>`;
     }
 }
-
-
