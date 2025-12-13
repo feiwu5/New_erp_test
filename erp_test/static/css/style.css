@@ -187,6 +187,36 @@ body.quiz {
     /* 原本的樣式保持不動 */
 }
 
+.level-box.unlocked {
+    background-color: #f7a738; /* 橙色系，表示「待命/現在可以挑戰」 */
+    color: white;
+    border: 3px solid #e0912c;
+    cursor: pointer; /* 保持可點擊 */
+    flex-direction: column; /* 讓文字垂直排列 */
+}
+
+.level-box.unlocked:hover { 
+    transform: scale(1.1); /* 保持 Hover 效果，表示可互動 */
+}
+
+/* --- [新增] 狀態 C: 鎖定關卡 (locked) --- */
+.level-box.locked {
+    /* 視覺上變灰、變暗，表示無法互動 */
+    background-color: #6c757d; /* 灰色背景 */
+    color: #bdbdbd; /* 灰色文字 */
+    border: 3px solid #5a6268;
+    cursor: not-allowed; /* 游標變更為禁止符號 */
+    pointer-events: none; /* 禁用滑鼠事件，確保無法點擊 (雖然 JS 已經處理，這是雙重保險) */
+    transform: none; /* 移除 Hover 效果 */
+    flex-direction: column; 
+    opacity: 0.6; /* 增加透明度，使鎖定效果更明顯 */
+}
+
+/* 確保鎖定狀態下，滑鼠移上去沒有縮放效果 */
+.level-box.locked:hover { 
+    transform: none; 
+}
+
 
 
 /* 翻頁按鈕 */
@@ -1130,4 +1160,3 @@ body.wrong-q-page {
     border-radius: 10px;
     background-color: #f0f8ff;
 }
-
