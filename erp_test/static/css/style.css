@@ -166,10 +166,10 @@ body.quiz {
 
 .ingredient-badge {
     position: absolute;
-    top: -10px;
-    left: -15px;
-    width: 50px;
-    height: 50px;
+    top: 0px;
+    left: 0px;
+    width: 30px;
+    height: 30px;
     overflow: hidden;
     border-radius: 2px;
     background: rgba(255,255,255,0.8);
@@ -1026,6 +1026,81 @@ body.wrong-q-page {
         align-self: flex-end;
     }
 }
+
+
+/* ================================= */
+/* 新增：類別選擇區塊樣式 (Category Selection) - 使用 erp-wq- 前綴 */
+/* ================================= */
+
+.erp-wq-category-selection {
+    text-align: center;
+    padding: 20px 0;
+}
+
+.erp-wq-category-selection h2 {
+    font-size: 24px;
+    color: #333;
+    margin-bottom: 30px;
+}
+
+.erp-wq-button-group {
+    display: flex;
+    justify-content: center;
+    gap: 20px; 
+    flex-wrap: wrap; 
+}
+
+.erp-wq-category-btn {
+    flex-basis: 30%; 
+    min-width: 180px;
+    padding: 25px 15px;
+    font-size: 20px;
+    font-weight: bold;
+    cursor: pointer;
+    border: none;
+    border-radius: 10px;
+    color: white;
+    background-color: #5cb85c; /* 綠色，可根據喜好調整 */
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    transition: all 0.3s ease;
+    text-shadow: 1px 1px 2px rgba(0,0,0,0.2);
+}
+
+.erp-wq-category-btn:hover {
+    background-color: #4cae4c;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 10px rgba(0,0,0,0.15);
+}
+
+/* 返回類別按鈕 */
+.erp-wq-back-btn {
+    background-color: #f0ad4e;
+    color: white;
+    border: none;
+    padding: 8px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-bottom: 20px;
+    font-size: 16px;
+    display: block; 
+    width: fit-content;
+    transition: background-color 0.3s;
+}
+
+.erp-wq-back-btn:hover {
+    background-color: #ec971f;
+}
+
+/* 類別標題 (用於題目顯示區內的標題) */
+.wq-category-header {
+    font-size: 24px;
+    color: #4a90e2;
+    margin-top: 0;
+    margin-bottom: 20px;
+    padding: 10px 0;
+    border-bottom: 2px solid #e0e0e0;
+}
+
 
 /* ============================
    獎勵動畫 CSS (調整圖片大小)
