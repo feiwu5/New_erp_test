@@ -89,7 +89,7 @@ async function loadQuestions(category) {
         });
 
         // 成功載入時，不顯示任何 console.log 或 alert
-        return shuffle(list).slice(0, 70);
+        return shuffle(list).slice(0, 5); // 隨機取 5 題作為示範
         
     } catch (err) {
         // 讀取錯誤時，僅在控制台顯示錯誤

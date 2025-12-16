@@ -71,5 +71,5 @@ def wrong_questions():
 
 
 # 運行應用程式
-#if __name__ == '__main__':
+if __name__ == '__main__':
     app.run(debug=True)

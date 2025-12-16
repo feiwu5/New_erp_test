@@ -1,9 +1,9 @@
-import { getConfigByLevel } from "./level_config.js";
+import { getConfigByLevel } from "/static/js/level_config.js";
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
 import { getFirestore, doc, getDoc } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
 
 // -------------------------
-// Firebase 設定 (需要讀取玩家狀態)
+// Firebase 設定
 // -------------------------
 const firebaseConfig = {
     apiKey: "AIzaSyBGmdTWLvh00bp4yg7pGNRBDfV5u71Dg-w",
@@ -47,9 +47,7 @@ async function loadPlayerStatus() {
     }
 }
 
-// ==========================================================
-// 🎯 核心修改區域：renderPage 函式 (實現關卡鎖定邏輯)
-// ==========================================================
+// 生成當前頁的關卡
 function renderPage() {
     levelGrid.innerHTML = ""; // 清空原本格子
 
@@ -61,21 +59,14 @@ function renderPage() {
         box.className = "level-box";
         box.textContent = `第${i}關`;
 
-        // --- 狀態檢查 ---
-        const isPassed = i <= highestLevelCompleted;
-        const isNextLevel = i === highestLevelCompleted + 1; // 玩家可以挑戰的下一關
-        const isLocked = i > highestLevelCompleted + 1;       // 尚未解鎖
-
-        // 可點擊的條件：已過關 (重玩) 或 下一關 (挑戰)
-        const isSelectable = isPassed || isNextLevel; 
-
-        // --- 樣式設定 ---
-        if (isPassed) {
-            // 狀態 A: 已過關
-            box.classList.add("passed"); 
+        // 🎯 核心邏輯：檢查是否已過關
+        if (i <= highestLevelCompleted) {
+            box.classList.add("passed"); // 添加過關樣式
+            
+            // 取得該關卡的食材圖
             const cfg = getConfigByLevel(i);
-            const imgSrc = cfg ? `../images/${encodeURIComponent(cfg.rewardImg)}` : "";
-
+            // 🚨 圖片路徑：使用 ../images/ 是正確的相對路徑
+            const imgSrc = cfg ? `/static/images/${encodeURIComponent(cfg.rewardImg)}` : "";
             box.innerHTML = `
                 <div class="ingredient-badge">
                     <img src="${imgSrc}" alt="${cfg.rewardName}">
@@ -83,31 +74,21 @@ function renderPage() {
                 <span class="level-number">第${i}關</span>
                 <span class="status-text">已過關</span>
             `;
-        } else if (isNextLevel) {
-            // 狀態 B: 挑戰中 (下一關)
-            box.classList.add("unlocked"); // 新增樣式: 可挑戰
-            box.innerHTML = `
-                <span class="level-number">第${i}關</span>
-                <span class="status-text">可挑戰</span>
-            `;
-        } else if (isLocked) {
-            // 狀態 C: 鎖定
-            box.classList.add("locked");
-             box.innerHTML = `
-                <span class="level-number">第${i}關</span>
-                <span class="status-text">鎖定</span>
-            `;
         }
 
-        // --- 點擊事件：只允許點擊可選取的關卡 ---
-        if (isSelectable) {
-            box.addEventListener("click", () => {
-                localStorage.setItem("selected_level", i);
-                // 跳到 level.html
+        // 點擊事件，跳轉到 level.html (題庫選擇頁)
+        box.addEventListener("click", () => {
+            localStorage.setItem("selected_level", i);
+            
+            // 🚨 修正跳轉路徑：使用從 HTML 傳入的全域變數 LEVEL_URL
+            // 這樣可以確保 Flask 路由正確運作
+            if (typeof LEVEL_URL !== 'undefined') {
+                window.location.href = LEVEL_URL;
+            } else {
+                // 作為備用
                 window.location.href = "level.html";
-            });
-        }
-        // 如果是鎖定關卡 (isLocked)，則不綁定點擊事件
+            }
+        });
 
         levelGrid.appendChild(box);
     }
@@ -116,10 +97,6 @@ function renderPage() {
     prevBtn.style.display = currentPage === 1 ? "none" : "block";
     nextBtn.style.display = currentPage * levelsPerPage >= totalLevels ? "none" : "block";
 }
-// ==========================================================
-// 🎯 核心修改區域結束
-// ==========================================================
-
 
 // 按鈕事件
 prevBtn.addEventListener("click", () => {
@@ -137,7 +114,7 @@ nextBtn.addEventListener("click", () => {
 });
 
 // -------------------------
-// 初始化 (新增載入進度)
+// 初始化
 // -------------------------
 async function init() {
     await loadPlayerStatus(); // 等待玩家進度載入
