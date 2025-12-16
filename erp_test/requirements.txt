@@ -1,3 +1,0 @@
-# requirements.txt
-Flask
-gunicorn  # 🚨 必須添加 gunicorn 來作為生產級的 Web 伺服器
